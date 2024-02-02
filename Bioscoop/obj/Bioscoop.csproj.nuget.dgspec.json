@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SOFA3\\Bioscoop\\Bioscoop.csproj": {}
+    "C:\\Users\\taert\\source\\repos\\SOFA3\\Bioscoop\\Bioscoop.csproj": {}
   },
   "projects": {
-    "E:\\SOFA3\\Bioscoop\\Bioscoop.csproj": {
+    "C:\\Users\\taert\\source\\repos\\SOFA3\\Bioscoop\\Bioscoop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SOFA3\\Bioscoop\\Bioscoop.csproj",
+        "projectUniqueName": "C:\\Users\\taert\\source\\repos\\SOFA3\\Bioscoop\\Bioscoop.csproj",
         "projectName": "Bioscoop",
-        "projectPath": "E:\\SOFA3\\Bioscoop\\Bioscoop.csproj",
-        "packagesPath": "C:\\Users\\kvnva\\.nuget\\packages\\",
-        "outputPath": "E:\\SOFA3\\Bioscoop\\obj\\",
+        "projectPath": "C:\\Users\\taert\\source\\repos\\SOFA3\\Bioscoop\\Bioscoop.csproj",
+        "packagesPath": "C:\\Users\\taert\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\taert\\source\\repos\\SOFA3\\Bioscoop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kvnva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\taert\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
