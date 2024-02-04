@@ -29,7 +29,7 @@ namespace Bioscoop {
 
                 MovieTicket ticket = movieTickets[i];
                 double priceToAdd = ticket.getPrice();
-                bool isWeekDay = ticket.movieScreening.dateAndTime.DayOfWeek <= DayOfWeek.Thursday;
+                bool isWeekDay = ticket.movieScreening.dateAndTime.DayOfWeek >= DayOfWeek.Monday && ticket.movieScreening.dateAndTime.DayOfWeek <= DayOfWeek.Thursday;
 
                 //handeling premium tickets
                 if (ticket.isPremium) priceToAdd += isStudentOrder ? 2 : 3;
