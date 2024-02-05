@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Bioscoop.Behaviors.Pricing;
 using Bioscoop.Interfaces;
 
 namespace Bioscoop {
@@ -12,11 +13,24 @@ namespace Bioscoop {
         public int orderNr { get; set; }
         public bool isStudentOrder { get; set; }
         public List<MovieTicket> movieTickets { get; set; }
+
         private IExportStrategy ExportStrategy;
+        private List<IPriceCalculationStrategy> PricePerTicketCalculationStrategies;
+        private List<IPriceCalculationStrategy> GroupPriceCalculationStrategies;
+
         public Order(int orderNr, bool isStudentOrder, IExportStrategy exportStrategy) {
             this.orderNr = orderNr;
             this.isStudentOrder = isStudentOrder;
             movieTickets = new List<MovieTicket>();
+
+            PricePerTicketCalculationStrategies = new List<IPriceCalculationStrategy>();
+            PricePerTicketCalculationStrategies.Add(new FreeSeatRule());
+            PricePerTicketCalculationStrategies.Add(new PremiumSeatRule());
+
+            GroupPriceCalculationStrategies = new List<IPriceCalculationStrategy>();
+            GroupPriceCalculationStrategies.Add(new GroupDisscountRule());
+
+            ExportStrategy = exportStrategy;
         }
 
         public void addSeatReservation(MovieTicket ticket) {
@@ -31,19 +45,21 @@ namespace Bioscoop {
 
                 MovieTicket ticket = movieTickets[i];
                 double priceToAdd = ticket.getPrice();
-                bool isWeekDay = ticket.movieScreening.dateAndTime.DayOfWeek >= DayOfWeek.Monday && ticket.movieScreening.dateAndTime.DayOfWeek <= DayOfWeek.Thursday;
 
-                //handeling premium tickets
-                if (ticket.isPremium) priceToAdd += isStudentOrder ? 2 : 3; //done
-
-                //handeling 2nd free tickets for students or weekdays
-                if ((isStudentOrder || isWeekDay) && i % 2 == 1) priceToAdd = 0; //done
+                //Handeling strategies related to the individual ticket price
+                foreach (IPriceCalculationStrategy strategy in PricePerTicketCalculationStrategies)
+                {
+                    priceToAdd = strategy.EditPrice(movieTickets, isStudentOrder, priceToAdd, i);
+                }
 
                 totalPrice += priceToAdd;
             }
 
-            //handeling 10% discount for non students
-            if (!isStudentOrder && movieTickets.Count >= 6) totalPrice *= 0.9;
+            //Handeling strategies related to the full price
+            foreach (IPriceCalculationStrategy strategy in GroupPriceCalculationStrategies)
+            {
+                totalPrice = strategy.EditPrice(movieTickets, isStudentOrder, totalPrice, 0);
+            }
 
             return totalPrice;
         }

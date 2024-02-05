@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Bioscoop.Behaviors.Export;
 using NUnit.Framework;
 
 namespace Bioscoop.Tests {
@@ -17,7 +18,7 @@ namespace Bioscoop.Tests {
             MovieTicket ticket4 = new MovieTicket(screening, 1, 4, false);
             MovieTicket ticket5 = new MovieTicket(screening, 1, 5, false);
 
-            Order order = new Order(1, true);
+            Order order = new Order(1, true, new JSONExport());
 
             // Act
             order.addSeatReservation(ticket1);
@@ -47,7 +48,7 @@ namespace Bioscoop.Tests {
             MovieTicket ticket5 = new MovieTicket(screening, 1, 5, false);
             MovieTicket ticket6 = new MovieTicket(screening, 1, 6, false);
 
-            Order order = new Order(2, false); // Non-student order
+            Order order = new Order(2, false, new JSONExport()); // Non-student order
 
             // Act
             order.addSeatReservation(ticket1);
@@ -73,7 +74,7 @@ namespace Bioscoop.Tests {
 
             MovieTicket premiumTicket = new MovieTicket(screening, 1, 1, true);
 
-            Order order = new Order(1, true);
+            Order order = new Order(1, true, new JSONExport());
 
             // Act
             order.addSeatReservation(premiumTicket);
