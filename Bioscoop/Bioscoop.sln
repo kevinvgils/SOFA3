@@ -5,7 +5,12 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bioscoop", "Bioscoop.csproj", "{9543707D-DC61-4AD5-9647-D0E03E5B4F1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bioscoop.Tests", "..\Bioscoop.Tests\Bioscoop.Tests.csproj", "{E6D9247C-F84B-4858-A723-E83247002A0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bioscoop.Tests", "..\Bioscoop.Tests\Bioscoop.Tests.csproj", "{E6D9247C-F84B-4858-A723-E83247002A0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B39EF445-52AE-40D0-864B-2E3EDA922231}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\dotnet-desktop.yml = ..\.github\workflows\dotnet-desktop.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
