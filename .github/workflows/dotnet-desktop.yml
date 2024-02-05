@@ -23,7 +23,7 @@ jobs:
           dotnet-version: '6.0.x' # Specify the SDK Version to use.
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore Bioscoop.Tests/Bioscoop.Tests.csproj
 
       - name: Test
         run: dotnet test --no-restore --verbosity normal
@@ -71,7 +71,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"kevinvgils_SOFA3" /o:"kevinvgils" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=**/coverage.xml          cd Bioscoop
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"kevinvgils_SOFA3" /o:"kevinvgils" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=**/coverage.xml
+          cd Bioscoop
           dotnet build --no-incremental
           dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
           cd ..
