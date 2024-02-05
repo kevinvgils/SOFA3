@@ -11,7 +11,7 @@ namespace Bioscoop.Behaviors.Pricing
     {
         public double EditPrice(List<MovieTicket> tickets, bool isStudentOrder, double startingPrice, int ticketNumber)
         {
-            if (isStudentOrder && tickets.Count >= 6) return startingPrice *= 0.9;
+            if (!isStudentOrder && tickets.Count >= 6) return startingPrice *= 0.9;
             return startingPrice;
         }
     }

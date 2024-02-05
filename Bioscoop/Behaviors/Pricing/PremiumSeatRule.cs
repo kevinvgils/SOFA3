@@ -12,7 +12,7 @@ namespace Bioscoop.Behaviors.Pricing
     {
         public double EditPrice(List<MovieTicket> tickets, bool isStudentOrder, double startingPrice, int ticketNumber)
         {
-            if (tickets[ticketNumber].isPremium) return startingPrice;
+            if (!tickets[ticketNumber].isPremium) return startingPrice;
             return startingPrice += isStudentOrder ? 2 : 3;
         }
     }

@@ -24,8 +24,9 @@ namespace Bioscoop {
             movieTickets = new List<MovieTicket>();
 
             PricePerTicketCalculationStrategies = new List<IPriceCalculationStrategy>();
-            PricePerTicketCalculationStrategies.Add(new FreeSeatRule());
             PricePerTicketCalculationStrategies.Add(new PremiumSeatRule());
+            PricePerTicketCalculationStrategies.Add(new FreeSeatRule());
+            
 
             GroupPriceCalculationStrategies = new List<IPriceCalculationStrategy>();
             GroupPriceCalculationStrategies.Add(new GroupDisscountRule());
