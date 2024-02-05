@@ -43,7 +43,12 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool install dotnet-sonarscanner --tool-path .\.sonar\scanner --version 6.1.0
-
+          
+      - name: Install dotnet-coverage
+        shell: powershell
+        run: |
+          dotnet tool install --global dotnet-coverage
+          
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -53,4 +58,5 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"kevinvgils_SOFA3" /o:"kevinvgils" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=**/coverage.xml
           cd Bioscoop
           dotnet build --no-incremental
+          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
