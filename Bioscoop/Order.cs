@@ -35,7 +35,7 @@ namespace Bioscoop {
                 if (ticket.isPremium) priceToAdd += isStudentOrder ? 2 : 3;
 
                 //handeling 2nd free tickets for students or weekdays
-                if ((isStudentOrder || isWeekDay) && i % 2 == 0 && i != 0) priceToAdd = 0;
+                if ((isStudentOrder || isWeekDay) && i % 2 == 1) priceToAdd = 0;
 
                 totalPrice += priceToAdd;
             }
