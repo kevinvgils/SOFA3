@@ -6,9 +6,12 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Bioscoop.Behaviors {
-    public class JSONExport : IExportStrategy {
-        public void Export(List<MovieTicket> movieTickets) {
+namespace Bioscoop.Behaviors.Export
+{
+    public class JSONExport : IExportStrategy
+    {
+        public void Export(List<MovieTicket> movieTickets)
+        {
             Console.WriteLine(JsonSerializer.Serialize(movieTickets));
         }
     }

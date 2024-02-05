@@ -1,5 +1,5 @@
 ﻿namespace Bioscoop.Interfaces {
     public interface IPriceCalculationStrategy {
-        double CalculatePrice(MovieTicket ticket, bool isStudentOrder, bool isWeekDay);
+        double EditPrice(List<MovieTicket> tickets, bool isStudentOrder, double startingPrice, int ticketNumber);
     }
 }

@@ -34,10 +34,10 @@ namespace Bioscoop {
                 bool isWeekDay = ticket.movieScreening.dateAndTime.DayOfWeek >= DayOfWeek.Monday && ticket.movieScreening.dateAndTime.DayOfWeek <= DayOfWeek.Thursday;
 
                 //handeling premium tickets
-                if (ticket.isPremium) priceToAdd += isStudentOrder ? 2 : 3;
+                if (ticket.isPremium) priceToAdd += isStudentOrder ? 2 : 3; //done
 
                 //handeling 2nd free tickets for students or weekdays
-                if ((isStudentOrder || isWeekDay) && i % 2 == 1) priceToAdd = 0;
+                if ((isStudentOrder || isWeekDay) && i % 2 == 1) priceToAdd = 0; //done
 
                 totalPrice += priceToAdd;
             }
