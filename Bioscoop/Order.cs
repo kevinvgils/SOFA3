@@ -5,13 +5,15 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Bioscoop.Interfaces;
 
 namespace Bioscoop {
     public class Order {
         public int orderNr { get; set; }
         public bool isStudentOrder { get; set; }
         public List<MovieTicket> movieTickets { get; set; }
-        public Order(int orderNr, bool isStudentOrder) {
+        private IExportStrategy ExportStrategy;
+        public Order(int orderNr, bool isStudentOrder, IExportStrategy exportStrategy) {
             this.orderNr = orderNr;
             this.isStudentOrder = isStudentOrder;
             movieTickets = new List<MovieTicket>();
@@ -46,12 +48,12 @@ namespace Bioscoop {
             return totalPrice;
         }
 
-        public void export(TicketExportFormat exportFormat) {
-            if(exportFormat == TicketExportFormat.PLAINTEXT) {
-                Console.WriteLine(movieTickets.ToString());
-            } else {
-                Console.WriteLine(JsonSerializer.Serialize(movieTickets));
-            }
+        public void setExportStrategy(IExportStrategy exportStrategy) {
+            this.ExportStrategy = exportStrategy;
+        }
+
+        public void export() {
+            ExportStrategy.Export(this.movieTickets);
         }
     }
 }
